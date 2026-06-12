@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Coventures · Value Model</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#242731; --card:#2b2f3b; --card2:#323748; --ink:#f4f1ea; --dim:#9aa0ae;
+    --pink:#FF7BAC; --teal:#00C6C1; --ivory:#f4f1ea; --line:#3a4050;
+  }
+  *{box-sizing:border-box; margin:0; padding:0}
+  body{background:var(--bg); color:var(--ink); font-family:'Poppins',sans-serif; font-weight:300; line-height:1.5; padding:0 0 80px}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 28px}
+  header{padding:42px 0 6px}
+  .brand{display:flex; align-items:center; gap:12px; margin-bottom:26px}
+  .dot{width:26px;height:26px;border-radius:50%;background:var(--pink)}
+  .wordmark{font-weight:600; font-size:20px; letter-spacing:.5px; line-height:1.05}
+  .eyebrow{color:var(--pink); font-size:11px; font-weight:600; letter-spacing:3px; text-transform:uppercase; margin-bottom:10px}
+  h1{font-size:34px; font-weight:700; line-height:1.2; max-width:860px}
+  .sub{color:var(--dim); max-width:800px; margin-top:10px; font-size:14.5px}
+  .honesty{margin-top:14px; font-size:12px; color:var(--dim); font-style:italic; border-left:3px solid var(--pink); padding-left:10px}
+
+  .master{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin:32px 0 0}
+  .mbtn{background:var(--card); border:1.5px solid var(--line); border-radius:14px; padding:18px 18px 14px; cursor:pointer; transition:.15s; position:relative}
+  .mbtn:hover{border-color:var(--dim)}
+  .mbtn.active{border-color:var(--teal); background:var(--card2); box-shadow:0 0 0 1px var(--teal)}
+  .mbtn .t{font-weight:700; font-size:15px; letter-spacing:.5px}
+  .mbtn .d{font-size:12px; color:var(--dim); margin-top:5px}
+  .mbtn .tag{position:absolute; top:14px; right:14px; font-size:10px; letter-spacing:2px; color:var(--teal); font-weight:600}
+
+  .delta{display:flex; align-items:center; gap:22px; background:linear-gradient(90deg,#2b2f3b, #323748); border:1px solid var(--pink); border-radius:14px; padding:16px 24px; margin:14px 0 4px}
+  .delta .x{font-size:40px; font-weight:800; color:var(--pink); white-space:nowrap}
+  .delta .txt{font-size:13.5px; color:var(--ink)}
+  .delta .txt b{color:var(--teal)}
+
+  .levers{display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin:14px 0 6px}
+  .lever{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:13px 14px; display:flex; flex-direction:column}
+  .lever .lbl{font-size:11px; letter-spacing:1.4px; text-transform:uppercase; color:var(--dim); font-weight:600; display:flex; align-items:center; gap:6px}
+  .lever .now{font-size:10.5px; color:var(--teal); margin-top:3px; min-height:32px}
+  .seg{display:flex; gap:5px; margin-top:auto; padding-top:7px}
+  .seg button{flex:1; background:var(--bg); color:var(--dim); border:1px solid var(--line); border-radius:7px; padding:7px 2px; font-family:inherit; font-size:12px; cursor:pointer}
+  .seg button.on{background:var(--pink); color:#1d1f27; font-weight:600; border-color:var(--pink)}
+  .lever.disabled{opacity:.45; pointer-events:none}
+
+  .info{display:inline-flex; width:15px; height:15px; border-radius:50%; border:1px solid var(--dim); color:var(--dim); font-size:10px; align-items:center; justify-content:center; cursor:pointer; font-style:normal; flex:none}
+  .info:hover{border-color:var(--teal); color:var(--teal)}
+  .pop{display:none; position:fixed; z-index:50; max-width:400px; background:#1c1e26; border:1px solid var(--teal); border-radius:10px; padding:14px 16px; font-size:12.5px; color:var(--ink); box-shadow:0 10px 40px rgba(0,0,0,.5)}
+  .pop b{color:var(--teal)}
+  .pop .src{display:block; margin-top:8px; color:var(--dim); font-size:11px; font-style:italic}
+
+  .grid{display:grid; grid-template-columns:2fr 1fr; gap:14px; margin-top:14px}
+  .card{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:20px}
+  .card h3{font-size:13px; letter-spacing:2px; text-transform:uppercase; color:var(--dim); font-weight:600; display:flex; align-items:center; gap:8px; margin-bottom:12px}
+  svg{width:100%; height:auto; display:block}
+  .legend{display:flex; gap:18px; margin-top:10px; font-size:12px; color:var(--dim)}
+  .legend span{display:inline-flex; align-items:center; gap:6px}
+  .sw{width:11px; height:11px; border-radius:3px}
+
+  .kpis{display:flex; flex-direction:column; gap:10px}
+  .kpi{background:var(--card2); border-radius:10px; padding:12px 14px}
+  .kpi .v{font-size:24px; font-weight:700; color:var(--teal)}
+  .kpi .v.pinkv{color:var(--pink)}
+  .kpi .l{font-size:11.5px; color:var(--dim); margin-top:2px}
+
+  .cols{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:14px}
+  table{width:100%; border-collapse:collapse; font-size:13px}
+  th{font-size:10.5px; letter-spacing:1.4px; text-transform:uppercase; color:var(--dim); text-align:left; padding:7px 8px; border-bottom:1px solid var(--line); font-weight:600}
+  td{padding:8px; border-bottom:1px solid var(--line)}
+  td.num{text-align:right; font-weight:500}
+  .hl td{color:var(--teal); font-weight:600}
+  .chip{display:inline-block; font-size:9.5px; font-weight:700; letter-spacing:1px; border-radius:5px; padding:1px 6px; margin-left:6px; vertical-align:1px}
+  .ok{background:var(--teal); color:#1d1f27}
+  .warn{background:#5a3a45; color:var(--pink)}
+
+  /* formulas card */
+  .formulas .f{display:flex; gap:12px; align-items:baseline; padding:9px 0; border-bottom:1px solid var(--line)}
+  .formulas .f:last-child{border-bottom:none}
+  .formulas .n{flex:none; width:22px; height:22px; border-radius:50%; background:var(--bg); color:var(--pink); font-size:11px; font-weight:700; display:inline-flex; align-items:center; justify-content:center}
+  .formulas .eq{font-size:12.5px}
+  .formulas .eq b{color:var(--teal); font-weight:600}
+  .formulas .eq .why{display:block; font-size:11px; color:var(--dim); margin-top:1px}
+
+  details.assu{margin-top:18px; background:var(--card); border:1px solid var(--line); border-radius:14px}
+  details.assu summary{padding:16px 20px; cursor:pointer; font-weight:600; font-size:13px; letter-spacing:1.5px; text-transform:uppercase; color:var(--dim)}
+  .agrid{display:grid; grid-template-columns:repeat(4,1fr); gap:12px; padding:6px 20px 20px}
+  .ain label{display:block; font-size:11px; color:var(--dim); margin-bottom:4px}
+  .ain input{width:100%; background:var(--bg); border:1px solid var(--line); border-radius:7px; color:var(--ink); padding:7px 9px; font-family:inherit; font-size:13px}
+
+  footer{margin-top:34px; font-size:11.5px; color:var(--dim); border-top:1px solid var(--line); padding-top:18px}
+  footer b{color:var(--ink)}
+  .milebadge{display:inline-block; font-size:10px; font-weight:700; letter-spacing:1px; border-radius:5px; padding:2px 7px; margin-left:8px; vertical-align:2px}
+  @media(max-width:900px){.levers{grid-template-columns:repeat(2,1fr)}.grid,.cols{grid-template-columns:1fr}.master{grid-template-columns:1fr}.agrid{grid-template-columns:repeat(2,1fr)}.delta{flex-direction:column;align-items:flex-start;gap:6px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="brand"><div class="dot"></div><div class="wordmark">co —<br>ventures</div></div>
+  <div class="eyebrow">Value model · interactive</div>
+  <h1>Two formulas, one engine. Set the dials and see what the community becomes worth.</h1>
+  <p class="sub">Formula one: <b style="color:var(--pink)">community size × investment rate = new investments every year</b>. Formula two: <b style="color:var(--pink)">the portfolio appreciates the way our actual book has: 4x over 4 years in the base case</b>. Everything else supports those two. Starting point: our actual June 2026 position.</p>
+  <p class="honesty">Illustrative model, not a promise or an offer. Portfolio values are largely unrealised (paper). The big dials are here; every detailed assumption is editable under the hood.</p>
+</header>
+
+<div class="master" id="master" style="grid-template-columns:repeat(2,1fr)">
+  <div class="mbtn" data-m="today">
+    <div class="tag">AS-IS</div><div class="t">WITHOUT FUNDING</div>
+    <div class="d">Coventures on its own steam. Community, services and investing all grow at the pace founder time allows: ~3 investments per 100 members a year, mostly free ~2% advisory stakes and small tickets together with community EiRs. This baseline reproduces our actual ~€289k portfolio, which is how the model earns the right to project the other scenario.</div>
+  </div>
+  <div class="mbtn active" data-m="round">
+    <div class="tag">THIS ROUND</div><div class="t">WITH FUNDING · THE €1M PACKAGE</div>
+    <div class="d">The same company with fuel in the engine. The round buys three things: growth (community and AI-driven sales), pace (an investment rate that ramps year by year as we build the co-investing capability) and depth (ownership per company rising from ~2% to ~5-6%). Every dial below switches to its funded values.</div>
+  </div>
+</div>
+
+<div class="delta">
+  <div class="x" id="d-mult">–</div>
+  <div class="txt" id="d-text">–</div>
+</div>
+
+<div class="levers">
+  <div class="lever"><div class="lbl">Community growth <i class="info" data-i="comm">i</i></div>
+    <div class="now" id="now-comm"></div>
+    <div class="seg" data-k="commSel"><button data-v="steady">Steady</button><button data-v="plan" class="on">Plan</button><button data-v="bull">Bull</button></div></div>
+  <div class="lever" id="lev-svc"><div class="lbl">Services growth <i class="info" data-i="svc">i</i></div>
+    <div class="now" id="now-svc"></div>
+    <div class="seg" data-k="svcPath"><button data-v="cautious">Cautious</button><button data-v="plan" class="on">Deck plan</button><button data-v="bull">Bull</button></div></div>
+  <div class="lever"><div class="lbl">Investment rate <i class="info" data-i="rate">i</i></div>
+    <div class="now" id="now-rate"></div>
+    <div class="seg" data-k="rateSel"><button data-v="cons">Cons.</button><button data-v="base" class="on">Base</button><button data-v="opt">Opt.</button></div></div>
+  <div class="lever"><div class="lbl">Portfolio appreciation <i class="info" data-i="appr">i</i></div>
+    <div class="now" id="now-appr"></div>
+    <div class="seg" data-k="apprSel"><button data-v="pess">Pess.</button><button data-v="base" class="on">Base</button><button data-v="opt">Opt.</button></div></div>
+</div>
+
+<div class="grid">
+  <div class="card">
+    <h3>Coventures value on paper, 2026 → 2031 <i class="info" data-i="chart">i</i></h3>
+    <svg id="chart" viewBox="0 0 760 360"></svg>
+    <div class="legend">
+      <span><span class="sw" style="background:var(--teal)"></span>Engine · services business, valued conservatively</span>
+      <span><span class="sw" style="background:var(--pink)"></span>Portfolio · our stakes + co-invest carry, paper value</span>
+    </div>
+  </div>
+  <div class="kpis">
+    <div class="kpi"><div class="v" id="k-total31">–</div><div class="l">Total modelled value 2031</div></div>
+    <div class="kpi"><div class="v pinkv" id="k-total28">–</div><div class="l">Total modelled value 2028 · first milestone</div></div>
+    <div class="kpi"><div class="v" id="k-rev28">–</div><div class="l">Revenue 2028 vs €5M goal</div></div>
+    <div class="kpi"><div class="v pinkv" id="k-share">–</div><div class="l">Portfolio share of total value 2031 <i class="info" data-i="share">i</i></div></div>
+    <div class="kpi"><div class="v" id="k-inv28">–</div><div class="l" id="k-inv28l">Investments by EOY 2028 vs deck goal of 20</div></div>
+  </div>
+</div>
+
+<div class="cols">
+  <div class="card formulas">
+    <h3>The five formulas <i class="info" data-i="ladder">i</i></h3>
+    <div class="f"><span class="n">1</span><div class="eq"><b>Investments / year = community × rate</b><span class="why">100 members at base rate = 10 new investments a year. Anchored: today we run ~3 per 100, capital-constrained.</span></div></div>
+    <div class="f"><span class="n">2</span><div class="eq"><b>Our stake = ownership % × ~€2M entry valuation</b><span class="why">Today ~2% (advisory + small syndicate tickets). With this round ~5-6%: the FFF and pre-seed tickets become affordable. The ladder mechanics are under the hood.</span></div></div>
+    <div class="f"><span class="n">3</span><div class="eq"><b>Stakes appreciate like our actual book</b><span class="why">Base: 4x over 4 years. Our real portfolio stands at 4.0x with a capital-weighted age of ~3 years, so the base case is slower than what we have actually achieved.</span></div></div>
+    <div class="f"><span class="n">4</span><div class="eq"><b>Portfolio = our stakes + carry on others' money</b><span class="why">The syndicate and instruments invest alongside us; Coventures earns ~20% of the gains on that external capital.</span></div></div>
+    <div class="f"><span class="n">5</span><div class="eq"><b>Engine = EBITDA × 3-6x, by growth</b><span class="why">A deliberately conservative consulting multiple. No platform premium on top: if anything, this understates.</span></div></div>
+  </div>
+  <div class="card">
+    <h3>The two milestones <i class="info" data-i="mile">i</i></h3>
+    <table id="miletable">
+      <tr><th></th><th style="text-align:right">2028</th><th style="text-align:right">2031</th></tr>
+      <tr><td>Services revenue</td><td class="num" id="m-rev28">–</td><td class="num" id="m-rev31">–</td></tr>
+      <tr><td>New investments / yr</td><td class="num" id="m-inv28">–</td><td class="num" id="m-inv31">–</td></tr>
+      <tr><td>Companies in portfolio (cum.)</td><td class="num" id="m-cos28">–</td><td class="num" id="m-cos31">–</td></tr>
+      <tr><td>Own capital needed (cum.) <i class="info" data-i="cap">i</i></td><td class="num" id="m-need28">–</td><td class="num" id="m-need31">–</td></tr>
+      <tr><td>Own capital available (cum.)</td><td class="num" id="m-have28">–</td><td class="num" id="m-have31">–</td></tr>
+      <tr><td>Portfolio on paper (incl. carry)</td><td class="num" id="m-nav28">–</td><td class="num" id="m-nav31">–</td></tr>
+      <tr><td>Engine value</td><td class="num" id="m-svc28">–</td><td class="num" id="m-svc31">–</td></tr>
+      <tr class="hl"><td>Total Coventures value</td><td class="num" id="m-tot28">–</td><td class="num" id="m-tot31">–</td></tr>
+    </table>
+    <p class="locknote" id="capnote" style="margin-top:8px; font-size:10.5px; color:var(--dim); font-style:italic"></p>
+  </div>
+</div>
+
+<details class="assu"><summary>Under the hood · every assumption, editable</summary>
+  <div class="agrid" id="assu"></div>
+  <p style="padding:0 20px 18px; font-size:11.5px; color:var(--dim)">Defaults are anchored to actuals (CRF cap table 6/2026) and to the fund instrument scenario. Edit any field; the model recomputes instantly. Reset by reloading.</p>
+</details>
+
+<footer>
+  <p><b>Anchors (actual, June 2026):</b> ~€2M services revenue (2025) · 100+ entrepreneurs in the network · 8 community companies, on 5 cap tables (~63%) · own capital ~€72k → ~€289k = 4.0x at ~3 years capital-weighted age (largely paper) · capital managed for others €119k → €384k (3.2x) · ~70% of syndicate capital is the community's own money.</p>
+  <p style="margin-top:8px"><b>Method in one line:</b> community size × investment rate gives new investments; each stake is ownership % × entry valuation; stakes appreciate at the pace of our actual book (base 4x / 4 yrs); carry adds ~20% of the gains on co-invested external capital; the services engine is valued at a conservative EBITDA multiple. Paper values throughout; when and how cash returns is a separate conversation (see the deck's structure slide), deliberately not modelled here.</p>
+  <p style="margin-top:8px; font-style:italic">Illustrative scenario model. Not investment advice, not an offer, not a promise of returns. © Coventures Oy 2026 · coventures.io</p>
+</footer>
+</div>
+
+<div class="pop" id="pop"></div>
+
+<script>
+/* ================= parameters ================= */
+const P = {
+  master:'round',
+  commSel:'plan', svcPath:'plan', rateSel:'base', apprSel:'base',
+  // under the hood (all editable)
+  startCommunity:100,
+  // community growth %/yr: every lever has different values with vs without funding
+  commTodaySteady:10, commTodayPlan:20, commTodayBull:30,
+  commFundSteady:35,  commFundPlan:50,  commFundBull:70,
+  // services growth %/yr without funding (founder-led); funded values follow the deck path below
+  svcTodayCautious:10, svcTodayPlan:20, svcTodayBull:30,
+  rateTodayCons:1, rateTodayBase:3, rateTodayOpt:5,        // investments per 100 members / yr (no ramp without resources)
+  rateBaseStart:7, rateBaseEnd:15,                          // funded base: accelerating ramp 2027→2031 (calibrated: ~30 investments by EOY 2028)
+  rateConsFactor:0.55, rateOptFactor:1.3,                   // conservative / optimistic = factor on the base ramp
+  deckGoal:20,                                              // deck's "new investments by 2028" goal (update when slides update)
+  ownToday:2.0, ownRound:5.5, ownScale:7.0,                 // blended net ownership % per company
+  entryVal:2.0,                                             // €M entry valuation
+  apprPess:0.7, apprBase:4.0, apprOpt:8.0, apprYears:4,     // portfolio multiple over apprYears (pess <1: the book loses value)
+  extToday:100, extRound:300,                               // external co-invest capital k€/yr (from 2028 in round)
+  carryPct:20,
+  fundSizeM:50, covGP:40, fundCarry:20, fundStart:2029, fundDeployYears:5, // assumed live EOY 2028 when Investment rate = Optimistic
+  avgOwnTicket:30,                                          // own capital per investment k€ (blended)
+  margin:15, margin2026:5, reinvestShare:50, rev2026:2.3,
+  existingNAV:289
+};
+const SVC = {
+  cautious:{rate:(y)=>0.25},
+  plan:{rate:(y)=> y===2027?0.435 : y===2028?0.515 : 0.50},
+  bull:{rate:(y)=>0.60}
+};
+const YEARS=[2026,2027,2028,2029,2030,2031];
+
+/* ================= info texts ================= */
+const INFO = {
+  comm:"<b>Community growth.</b> Entrepreneurs in the network, 100+ today. The same dial means different numbers with and without funding: <b>with</b> the €150k community allocation and the AI sales machine, Steady/Plan/Bull = 35/50/70%/yr (Plan = the path to ~500 by 2028 committed in the deck); <b>without</b>, organic word-of-mouth only: 10/20/30%/yr, the same pace as founder-led services growth.<span class='src'>Anchor: team &amp; ask slides.</span>",
+  svc:"<b>Services growth.</b> The engine: co-build consulting revenue, ~€2M in 2025, ~€2.3M expected 2026. <b>With funding</b> (the €300k AI sales machine): Cautious 25%/yr, Plan = the committed deck path (~€3.3M 2027 → €5M 2028, then 50%/yr, tapering after 2031), Bull 60%/yr. <b>Without</b>, founder-led sales: 10/20/30%/yr, the same pace as organic community growth.<span class='src'>Anchor: ask slide EOY 2028 goals.</span>",
+  rate:"<b>Investment rate: formula one.</b> New investments per year = community size × this rate. With funding the rate ramps up year by year (base ~7 → 15 per 100 members) as the €200k deploys and the €150k instruments come online; calibrated to ~30 investments by EOY 2028. Without funding: flat 1 / 3 / 5 per 100, our actual capital-constrained pace. <b>Optimistic carries one extra assumption:</b> the partner recruited with this round has a joint fund structure (~€50M, Coventures 40% of the GP, entrepreneur-GPs 60%) live by the end of 2028. From 2029 the fund takes the later tickets and Coventures' share of carry accrues into the portfolio layer.<span class='src'>Anchor: 8 investments from a ~100-strong community 2022-2026; ask slide €150k 'scaling co-founding'.</span>",
+  appr:"<b>Portfolio appreciation: formula two.</b> How fast stake values grow, expressed as a multiple over 4 years. <b>Base 4x</b> = slower than our actual book, which stands at 4.0x with a capital-weighted age of ~3 years. Pessimistic 0.7x = the book loses value; Optimistic 8x assumes a Shook-class winner repeats. Deliberately the <b>same in both funding states</b>: the actual 4x was achieved without funding, so the funded case carries no extra optimism here. Applied as a smooth annual rate; real value moves in steps at financing rounds.<span class='src'>Anchor: CRF cap table 6/2026, investments dated 2/2022 → 2/2026.</span>",
+  chart:"<b>How to read this.</b> Both layers at <b>paper value</b>: no exit timing is promised or modelled. Teal: the services business at a deliberately conservative EBITDA multiple (3x below 30% growth, 5x at 30-45%, 6x above), no platform premium on top, although a machine that systematically manufactures deal flow arguably deserves one. Pink: our stakes plus carry, vintage by vintage. When and how cash actually returns (dividends from realized exits, secondaries) is a separate conversation: see the deck's structure slide.",
+  ladder:"<b>Where the ownership % comes from.</b> The blended averages (2% today, ~5.5% with this round, ~7% at scale) summarize the ownership ladder: advisory ~2% is earned by building (free); the FFF ticket (~€45k) takes a company to ~5%; the pre-seed ticket (€100k at ~€2M) adds ~5% before dilution; the bridge ticket defends it. Later rounds dilute non-participants ~20% each. The blended numbers are editable under the hood.",
+  mile:"<b>Two horizons.</b> 2028 = the milestone this round commits to (€5M revenue, self-sustaining growth, complete value capture). 2031 = the 5-year view. Most 2028 portfolio value is still paper; that is flagged, not hidden.",
+  share:"<b>Portfolio share.</b> How much of total 2031 value sits in equity stakes vs the services engine. The higher this is, the more the company is a venture machine rather than a consultancy: this share is what the round buys.",
+  cap:"<b>Capital check.</b> The rate is a plan; this row is the bill. Needed = investments × average own ticket (~€30k blended; many stakes are advisory-heavy and cheap, the laddered ones cost more). Available = €200k (2027) + €150k instruments (2028) + half of operating cash flow. If needed exceeds available, the gap is what the fund layer (next raise) exists to cover: the model shows the why of the second raise, not just the first."
+};
+
+/* ================= simulation ================= */
+function simulate(){
+  const m = P.master;
+  const commGrowth = (m==='today'
+    ? {steady:P.commTodaySteady, plan:P.commTodayPlan, bull:P.commTodayBull}
+    : {steady:P.commFundSteady,  plan:P.commFundPlan,  bull:P.commFundBull })[P.commSel] / 100;
+  const svcTodayRate = {cautious:P.svcTodayCautious, plan:P.svcTodayPlan, bull:P.svcTodayBull}[P.svcPath] / 100;
+  const svc = SVC[P.svcPath];
+  // formula 1: investment rate per 100 members.
+  // Funded states ramp up (instruments & team scale): base 7 → 15 per 100 over 2027-2031.
+  function rateAt(y){
+    if(m==='today') return {cons:P.rateTodayCons, base:P.rateTodayBase, opt:P.rateTodayOpt}[P.rateSel];
+    const t = Math.min(Math.max((y-2027)/4,0),1);
+    const base = P.rateBaseStart + (P.rateBaseEnd-P.rateBaseStart)*t;
+    return base * (P.rateSel==='cons'?P.rateConsFactor : P.rateSel==='opt'?P.rateOptFactor : 1);
+  }
+  // formula 2: appreciation
+  const apprMult = {pess:P.apprPess, base:P.apprBase, opt:P.apprOpt}[P.apprSel];
+  const r_ = Math.pow(apprMult, 1/P.apprYears) - 1;
+  // formula 2 applied to ownership (two states: without / with funding)
+  const ownPct = m==='today' ? P.ownToday : P.ownRound;
+  const extYr  = m==='today' ? P.extToday : P.extRound;
+
+  const r = {rev:[], svcVal:[], nav:[], total:[], cosCum:[], invYr:[], invCum:[], need:[], have:[],
+             rateFrom:rateAt(2027), rateTo:rateAt(2031), r_, ownPct, commGrowth};
+  let community = P.startCommunity, prevRev = P.rev2026;
+  let needCum=0, haveCum=0, invCum=0;
+  const vintages=[]; const extVint=[]; const fundVint=[];
+
+  YEARS.forEach((y,idx)=>{
+    if(idx>0) community *= (1+commGrowth);
+
+    // formula 1: investments this year (accelerating ramp in funded states)
+    const inv = idx===0 ? 0 : community*(rateAt(y)/100);
+    if(idx>0){ vintages.push({y, n:inv}); invCum += inv; }
+
+    // services engine
+    const baseRate = m==='today' ? svcTodayRate : svc.rate(y);
+    const rev = idx===0 ? P.rev2026 : prevRev*(1+baseRate);
+    prevRev = rev;
+    const marginTarget = m==='today' ? 0.08 : P.margin/100;
+    const marginNow = Math.min(P.margin2026/100 + (marginTarget-P.margin2026/100)*Math.min(idx/2,1), marginTarget);
+    const ebitda = rev*marginNow;
+    const mult = baseRate>=0.45?6: baseRate>=0.3?5:3;
+    const svcVal = ebitda*1000*(idx===0?3:mult);
+
+    // capital check (k€)
+    if(idx>0){
+      needCum += inv*P.avgOwnTicket;
+      let have = (P.reinvestShare/100)*ebitda*1000*(m==='today'?0.6:1);
+      if(m!=='today' && y===2027) have += 200;
+      if(m!=='today' && y===2028) have += 150;
+      if(m==='today') have += 30;
+      haveCum += have;
+    }
+
+    // external co-invest capital deployed (k€/yr): today from 2027, funded states from 2028
+    if(idx>0 && (m==='today' || y>=2028)) extVint.push({y, k:extYr});
+
+    // formulas 2+4: NAV = existing book + own stakes + carry on external gains, all appreciating at r_
+    let nav = P.existingNAV * Math.pow(1+r_, y-2026);
+    vintages.forEach(v=>{
+      const age = y-v.y; if(age<0) return;
+      nav += v.n * (ownPct/100) * (P.entryVal*1000) * Math.pow(1+r_, age);
+    });
+    let extGain = 0;
+    extVint.forEach(v=>{
+      const age = y-v.y; if(age<0) return;
+      extGain += v.k * (Math.pow(1+r_, age) - 1);
+    });
+    nav += Math.max(0, extGain) * (P.carryPct/100);
+
+    // Optimistic investment rate assumes the joint fund (~€50M, Coventures 40% of the GP)
+    // is live by end of 2028: from 2029 it deploys and its carry accrues into the portfolio layer.
+    if(m!=='today' && P.rateSel==='opt' && y>=P.fundStart){
+      fundVint.push({y, k:(P.fundSizeM*1000)/P.fundDeployYears});
+    }
+    let fundGain = 0;
+    fundVint.forEach(v=>{ const age=y-v.y; if(age<0)return; fundGain += v.k*(Math.pow(1+r_,age)-1); });
+    nav += Math.max(0, fundGain) * (P.fundCarry/100) * (P.covGP/100);
+
+    r.rev.push(rev); r.svcVal.push(svcVal); r.nav.push(nav); r.total.push(svcVal+nav);
+    r.invYr.push(Math.round(inv)); r.invCum.push(Math.round(invCum));
+    r.cosCum.push(8 + Math.round(invCum));
+    r.need.push(needCum); r.have.push(haveCum);
+  });
+  return r;
+}
+
+/* ================= rendering ================= */
+const fmtM = v => '€'+(v/1000).toFixed(1).replace('.',',')+'M';
+const fmtK = v => v>=1000 ? fmtM(v) : '€'+Math.round(v)+'k';
+
+function drawChart(r){
+  const svg = document.getElementById('chart');
+  const W=760,H=360,L=58,R=18,T=16,B=40;
+  const max = Math.max(...r.total)*1.12 || 1;
+  const x = i => L + (W-L-R)*i/(YEARS.length-1);
+  const yv = v => T + (H-T-B)*(1-v/max);
+  function area(lower, upper){
+    let d='M'+x(0)+' '+yv(upper[0]);
+    upper.forEach((v,i)=>d+=' L'+x(i)+' '+yv(v));
+    for(let i=lower.length-1;i>=0;i--) d+=' L'+x(i)+' '+yv(lower[i]);
+    return d+' Z';
+  }
+  const zero = YEARS.map(()=>0);
+  const l1 = r.svcVal.slice();
+  const l2 = l1.map((v,i)=>v+r.nav[i]);
+  let g='';
+  for(let i=1;i<=4;i++){ const v=max*i/4;
+    g+=`<line x1="${L}" y1="${yv(v)}" x2="${W-R}" y2="${yv(v)}" stroke="#3a4050" stroke-width="1" stroke-dasharray="3 5"/>`;
+    g+=`<text x="${L-8}" y="${yv(v)+4}" fill="#9aa0ae" font-size="11" text-anchor="end" font-family="Poppins">${fmtM(v)}</text>`;}
+  g+=`<path fill="#00C6C1" fill-opacity="0.85" d="${area(zero,l1)}"/>`;
+  g+=`<path fill="#FF7BAC" fill-opacity="0.85" d="${area(l1,l2)}"/>`;
+  YEARS.forEach((yy,i)=>{ g+=`<text x="${x(i)}" y="${H-14}" fill="#9aa0ae" font-size="12" text-anchor="middle" font-family="Poppins">${yy}</text>`; });
+  [[2,'2028 · milestone'],[5,'2031 · 5-year view']].forEach(([i,lab])=>{
+    g+=`<line x1="${x(i)}" y1="${T}" x2="${x(i)}" y2="${H-B}" stroke="#f4f1ea" stroke-width="1" stroke-dasharray="2 4" opacity="0.5"/>`;
+    g+=`<text x="${x(i)}" y="${T+2}" fill="#f4f1ea" font-size="10" text-anchor="middle" font-family="Poppins" opacity="0.8">${lab}</text>`;
+    g+=`<circle cx="${x(i)}" cy="${yv(l2[i])}" r="4" fill="#fff"/>`;
+    g+=`<text x="${x(i)}" y="${yv(l2[i])-10}" fill="#fff" font-size="13" font-weight="600" text-anchor="middle" font-family="Poppins">${fmtM(l2[i])}</text>`;
+  });
+  svg.innerHTML = g;
+}
+
+function render(){
+  const r = simulate();
+  drawChart(r);
+  const i28=2, i31=5;
+
+  // live "now" lines under levers
+  document.getElementById('now-comm').textContent = Math.round(r.commGrowth*100)+'%/yr → ~'+Math.round(100*Math.pow(1+r.commGrowth,2))+' members by 2028';
+  document.getElementById('now-svc').textContent = '€'+r.rev[i28].toFixed(1)+'M revenue 2028'+(P.master==='today'?' · founder-led':'');
+  document.getElementById('now-rate').textContent = (P.master==='today'
+    ? r.rateFrom+' per 100 members'
+    : r.rateFrom.toFixed(0)+' → '+r.rateTo.toFixed(0)+' per 100, ramping')+' → '+r.invYr[i31]+' inv. in 2031'
+    + (P.master!=='today' && P.rateSel==='opt' ? ' · fund 2029→' : '');
+  document.getElementById('now-appr').textContent = {pess:P.apprPess,base:P.apprBase,opt:P.apprOpt}[P.apprSel]+'x over '+P.apprYears+' yrs ('+Math.round(r.r_*100)+'%/yr)';
+
+  // delta banner vs TODAY baseline
+  const saveM = P.master; P.master='today';
+  const rT = simulate(); P.master=saveM;
+  const mult = r.total[i31]/Math.max(rT.total[i31],1);
+  document.getElementById('d-mult').textContent = saveM==='today' ? '1×' : (mult).toFixed(1).replace('.',',')+'×';
+  document.getElementById('d-text').innerHTML = saveM==='today'
+    ? 'This is the baseline: what Coventures becomes without funding. Switch state above to see what the round changes.'
+    : `What this scenario changes: from <b>${fmtM(rT.total[i31])}</b> without funding to <b>${fmtM(r.total[i31])}</b> modelled 2031 value. Same community, same formulas. The difference is capital: more investments per year, deeper ownership in each.`;
+
+  document.getElementById('k-total31').textContent = fmtM(r.total[i31]);
+  document.getElementById('k-total28').textContent = fmtM(r.total[i28]);
+  const hit = r.rev[i28]>=5;
+  document.getElementById('k-rev28').innerHTML = '€'+r.rev[i28].toFixed(1).replace('.',',')+'M'+`<span class="milebadge ${hit?'ok':'warn'}">${hit?'HIT':'BELOW'}</span>`;
+  document.getElementById('k-share').textContent = Math.round(100*r.nav[i31]/r.total[i31])+' %';
+  const invOk = r.invCum[i28]>=P.deckGoal;
+  document.getElementById('k-inv28').innerHTML = r.invCum[i28]+`<span class="milebadge ${invOk?'ok':'warn'}">${invOk?'AHEAD':'BELOW'}</span>`;
+  document.getElementById('k-inv28l').textContent = 'Investments by EOY 2028 vs deck goal of '+P.deckGoal;
+
+  const set=(id,v)=>document.getElementById(id).textContent=v;
+  set('m-rev28','€'+r.rev[i28].toFixed(1)+'M'); set('m-rev31','€'+r.rev[i31].toFixed(1)+'M');
+  set('m-inv28',r.invYr[i28]); set('m-inv31',r.invYr[i31]);
+  set('m-cos28',r.cosCum[i28]); set('m-cos31',r.cosCum[i31]);
+  set('m-need28',fmtK(r.need[i28])); set('m-need31',fmtK(r.need[i31]));
+  set('m-have28',fmtK(r.have[i28])); set('m-have31',fmtK(r.have[i31]));
+  set('m-nav28',fmtM(r.nav[i28])); set('m-nav31',fmtM(r.nav[i31]));
+  set('m-svc28',fmtM(r.svcVal[i28])); set('m-svc31',fmtM(r.svcVal[i31]));
+  set('m-tot28',fmtM(r.total[i28])); set('m-tot31',fmtM(r.total[i31]));
+  const gap = r.need[i31]-r.have[i31];
+  document.getElementById('capnote').innerHTML = gap>0
+    ? (P.master!=='today' && P.rateSel==='opt'
+      ? `The chosen rate needs <b style="color:var(--pink)">${fmtK(gap)}</b> more than own capital provides by 2031. In this setting the joint fund (live from 2029) covers it; that is the assumption you switched on.`
+      : `The chosen rate needs <b style="color:var(--pink)">${fmtK(gap)}</b> more than own capital provides by 2031. That gap is the fund layer's job: the model shows the why of the next raise, not just this one.`)
+    : 'Own capital covers the chosen rate. Headroom funds opportunism.';
+
+}
+
+/* ================= controls ================= */
+document.getElementById('master').addEventListener('click',e=>{
+  const b=e.target.closest('.mbtn'); if(!b)return;
+  document.querySelectorAll('.mbtn').forEach(x=>x.classList.remove('active'));
+  b.classList.add('active'); P.master=b.dataset.m; render();
+});
+document.querySelectorAll('.seg').forEach(seg=>{
+  seg.addEventListener('click',e=>{
+    const b=e.target.closest('button'); if(!b)return;
+    seg.querySelectorAll('button').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on');
+    const k=seg.dataset.k;
+    P[k] = b.dataset.v;
+    render();
+  });
+});
+const pop=document.getElementById('pop');
+document.querySelectorAll('.info').forEach(el=>{
+  el.addEventListener('click',ev=>{
+    ev.stopPropagation();
+    pop.innerHTML = INFO[el.dataset.i]||'';
+    pop.style.display='block';
+    const rc=el.getBoundingClientRect();
+    pop.style.left=Math.min(rc.left, window.innerWidth-420)+'px';
+    pop.style.top=(rc.bottom+8)+'px';
+  });
+});
+document.addEventListener('click',()=>pop.style.display='none');
+
+const A=[['rateTodayBase','Rate today: base /100/yr'],['rateFundBase','Rate funded: base /100/yr'],['rateFundCons','Rate funded: cons.'],['rateFundOpt','Rate funded: opt.'],
+ ['ownToday','Ownership without funding %'],['ownRound','Ownership with funding %'],['deckGoal','Deck goal: investments by 2028'],['entryVal','Entry valuation €M'],
+ ['apprPess','Appreciation pess. (x/4yrs)'],['apprBase','Appreciation base (x/4yrs)'],['apprOpt','Appreciation opt. (x/4yrs)'],['apprYears','Appreciation horizon yrs'],
+ ['extToday','External capital k€/yr (as-is)'],['extRound','External capital k€/yr (funded)'],['carryPct','Co-invest carry %'],['avgOwnTicket','Own ticket avg k€'],
+
+ ['fundSizeM','Joint fund size €M (opt. rate)'],['covGP','Coventures GP share %'],['fundCarry','Fund carry %'],['fundStart','Fund deploys from (year)'],
+ ['commFundPlan','Community growth funded: plan %'],['commTodayPlan','Community growth as-is: plan %'],['svcTodayPlan','Services growth as-is: plan %'],['rateBaseStart','Inv. rate ramp start /100'],['rateBaseEnd','Inv. rate ramp end /100'], ['margin','Services EBITDA margin % (target)'],['margin2026','EBITDA margin 2026 %'],['reinvestShare','Ops cash reinvested %'],['rev2026','Revenue 2026 €M'],['existingNAV','Current portfolio NAV k€']];
+document.getElementById('assu').innerHTML = A.map(([k,l])=>
+  `<div class="ain"><label>${l}</label><input type="number" step="any" value="${P[k]}" data-k="${k}"></div>`).join('');
+document.getElementById('assu').addEventListener('input',e=>{
+  const k=e.target.dataset.k; if(!k)return;
+  const v=parseFloat(e.target.value); if(!isNaN(v)){ P[k]=v; render(); }
+});
+
+render();
+</script>
+</body>
+</html>
