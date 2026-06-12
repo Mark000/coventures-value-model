@@ -114,7 +114,7 @@
     <div class="tag">EVERYTHING</div>
     <div class="t">Whole portfolio <i class="info" data-i="vall">i</i></div>
     <div class="x">3.5x</div>
-    <div class="d"><b>€191 007 → €672 615</b> across six companies, held through CRF and directly. This is the universe this page covers.</div>
+    <div class="d"><b>€191 007 → €672 615</b> across seven companies, held through CRF and directly. This is the universe this page covers.</div>
   </div>
   <div class="view">
     <div class="tag">THE SPV</div>
@@ -137,7 +137,7 @@
 
 <div class="card">
   <h3>The book at a glance · value by company <i class="info" data-i="map">i</i></h3>
-  <svg id="valuemap" viewBox="0 0 760 300"></svg>
+  <svg id="valuemap" viewBox="0 0 760 330"></svg>
   <div class="legend">
     <span><span class="sw" style="background:var(--teal)"></span>Held via CRF · paper</span>
     <span><span class="sw" style="background:var(--pink)"></span>Coventures direct · paper</span>
@@ -259,6 +259,28 @@
   </div>
 
   <div class="pos">
+    <div class="pimg"><img src="assets/valuelab.jpg" alt="ValueLab"></div>
+    <div class="pbody">
+    <div class="phead">
+      <div>
+        <div class="pname"><a href="https://valuelab.org" target="_blank" rel="noopener">ValueLab</a></div>
+        <div class="pdesc">Product management consultancy that embeds senior product leaders into teams · clients include SOK, Sanoma, Katana and TWAICE</div>
+        <div class="pmeta">Coventures direct · 20.00% · earned with work and a business transfer, no cash invested</div>
+      </div>
+      <div class="pmult tealm"><span class="m">20%</span><span class="s">owned · €0 cost</span></div>
+    </div>
+    <div class="pgrid">
+      <div><span class="pl">Invested</span><span class="pv">€0 <small>work + business transfer</small></span></div>
+      <div><span class="pl">Ownership</span><span class="pv">20.00% <small>direct</small></span></div>
+      <div><span class="pl">Company mark</span><span class="pv">None yet</span></div>
+      <div><span class="pl">Position value</span><span class="pv">€0 <small>in these figures</small></span></div>
+    </div>
+    <div class="ptarget tealt"><span class="tl">Owner target</span>Owner strategy: a dividend-paying company. First distributions targeted in about 5 years (around 2031).</div>
+    <p class="pnote">Acquired the venture builder way: the 20% was earned by building and by transferring business into the company, not bought with cash. The book therefore carries it at zero and no company mark exists yet; everything ValueLab ever returns is upside on €0 invested. A direct holding of Coventures Oy, outside CRF.</p>
+    </div>
+  </div>
+
+  <div class="pos">
     <div class="pimg closed"><span>Position closed · 3/2026</span></div>
     <div class="pbody">
     <div class="phead">
@@ -300,7 +322,7 @@
       <tr><td>CRF only</td><td class="num">€170 587</td><td class="num">€579 020</td><td class="num">3.39x</td></tr>
       <tr class="warnrow"><td>Whole portfolio without Shook</td><td class="num">€161 007</td><td class="num">€307 815</td><td class="num">1.91x</td></tr>
     </table>
-    <p class="tnote"><b>Why TVPI and not IRR:</b> most of the value is unrealised, and an IRR computed on paper marks would give a misleadingly precise number. TVPI = DPI (cash returned) + RVPI (paper value); today DPI is 0.28x for Coventures Oy and rising. <b>Marking policy:</b> latest priced round where one exists (Shook, Introist, Elementic), an actual trade where one happened (Arcticles), and a conservative internal mark where neither does (SpringDNA).</p>
+    <p class="tnote"><b>Why TVPI and not IRR:</b> most of the value is unrealised, and an IRR computed on paper marks would give a misleadingly precise number. TVPI = DPI (cash returned) + RVPI (paper value); today DPI is 0.28x for Coventures Oy and rising. <b>Marking policy:</b> latest priced round where one exists (Shook, Introist, Elementic), an actual trade where one happened (Arcticles), a conservative internal mark where neither does (SpringDNA), and zero where there is no basis for a mark at all (ValueLab).</p>
   </div>
   <div class="card">
     <h3>How the structure works <i class="info" data-i="str">i</i></h3>
@@ -313,7 +335,7 @@
       <tr><td>D4</td><td>Rent Game</td><td class="num">€6 654</td></tr>
       <tr class="hl"><td colspan="2">CRF total (incl. admin series K)</td><td class="num">€170 587</td></tr>
     </table>
-    <p class="tnote">CRF is a <b>tracking-stock investment company</b>: each share series corresponds to exactly one portfolio company, and investors own series shares roughly 1:1 to the euros they put in. One series' return follows only its own company. <b>Coventures Oy owns 30.2% of CRF</b> and additionally holds stakes outside CRF: SpringDNA 25.00%, Elementic 0.87% and Arcticles 1.1%, the latter two acquired at nominal cost by building the companies.</p>
+    <p class="tnote">CRF is a <b>tracking-stock investment company</b>: each share series corresponds to exactly one portfolio company, and investors own series shares roughly 1:1 to the euros they put in. One series' return follows only its own company. <b>Coventures Oy owns 30.2% of CRF</b> and additionally holds stakes outside CRF: SpringDNA 25.00%, ValueLab 20.00% (earned with work and a business transfer, carried at €0), Elementic 0.87% and Arcticles 1.1% (both at nominal cost). Building companies earns equity that money alone does not buy.</p>
   </div>
 </div>
 
@@ -334,24 +356,27 @@ const COS = [
   {name:'Elementic',              crf:44000,  direct:36540, cash:0,     inv:43506, mult:'~1.9x'},
   {name:'Arcticles (Winterent)',  crf:43411,  direct:12055, cash:0,     inv:32542, mult:'~1.7x'},
   {name:'SpringDNA',              crf:0,      direct:25000, cash:20000, inv:20000, mult:'2.25x'},
-  {name:'Rent Game',              crf:0,      direct:0,     cash:3059,  inv:7054,  mult:'0.43x'}
+  {name:'Rent Game',              crf:0,      direct:0,     cash:3059,  inv:7054,  mult:'0.43x'},
+  {name:'ValueLab',               crf:0,      direct:0,     cash:0,     inv:0,     mult:'',
+   zero:'20.00% owned · earned with work, not cash · carried at €0 until there is a basis for a mark'}
 ];
 
 const EVENTS = [
   {y:2028,  kind:'cash', lane:1, anchor:'start', xoff:0,  co:'SpringDNA',             t:'capital loan repaid · ~€20k'},
   {y:2029,  kind:'cash', lane:2, anchor:'start', xoff:0,  co:'Arcticles (Winterent)', t:'first dividends, recurring'},
-  {y:2031,  kind:'exit', lane:3, anchor:'end',   xoff:0,  co:'Shook Digital',         t:'target exit · €100M class'},
-  {y:2031,  kind:'exit', lane:2, anchor:'start', xoff:7,  co:'SpringDNA',             t:'target exit · €10M class'},
-  {y:2033,  kind:'exit', lane:3, anchor:'end',   xoff:0,  co:'Introist',              t:'target exit · €10M class'},
-  {y:2033,  kind:'exit', lane:1, anchor:'end',   xoff:-7, co:'Elementic',             t:'target exit'}
+  {y:2031,  kind:'exit', lane:4, anchor:'end',   xoff:0,  co:'Shook Digital',         t:'target exit · €100M class'},
+  {y:2031,  kind:'exit', lane:3, anchor:'start', xoff:8,  co:'SpringDNA',             t:'target exit · €10M class'},
+  {y:2031,  kind:'cash', lane:1, anchor:'start', xoff:-8, co:'ValueLab',              t:'first dividends, recurring'},
+  {y:2033,  kind:'exit', lane:4, anchor:'end',   xoff:0,  co:'Introist',              t:'target exit · €10M class'},
+  {y:2033,  kind:'exit', lane:2, anchor:'end',   xoff:0,  co:'Elementic',             t:'target exit'}
 ];
 
 /* ================= info texts ================= */
 const INFO = {
-  vall:"<b>Whole portfolio.</b> Everything Coventures and CRF hold together, counted once: CRF's six series (€170 587 in) plus Coventures Oy's direct stakes outside CRF (€20 420 in: SpringDNA, Elementic 0.87%, Arcticles 1.1%, Rent Game equity). Coventures' share inside CRF is not added again.<span class='src'>Source: CRF cap table 6/2026.</span>",
+  vall:"<b>Whole portfolio.</b> Everything Coventures and CRF hold together, counted once: CRF's six series (€170 587 in) plus Coventures Oy's direct stakes outside CRF (€20 420 in: SpringDNA, ValueLab 20% carried at €0, Elementic 0.87%, Arcticles 1.1%, Rent Game equity). Coventures' share inside CRF is not added again.<span class='src'>Source: CRF cap table 6/2026.</span>",
   vcrf:"<b>CRF, the SPV.</b> Coventures Rocket Fuel Oy pools capital from multiple investors and invests it series by series. Coventures Oy holds 51 465 of ~170 595 shares (30.2%); outside investors hold 69.8% (€119 122 in → €384 023 on paper, 3.22x). The difference to Coventures' 3.79x via CRF comes from which series each party participated in.<span class='src'>Source: CRF shareholder register 6/2026.</span>",
-  vcov:"<b>Coventures Oy.</b> The company's own money through two channels: via CRF (€51 465 → €194 997, 3.79x) and directly outside CRF (€20 420 → €93 595, ~4.6x, driven by founder equity acquired at nominal cost). Realised so far: €20 000 from the SpringDNA business sale plus €471 as its share of the Rent Game repayment.<span class='src'>Source: CRF cap table 6/2026 + SpringDNA documents 3/2026.</span>",
-  map:"<b>How to read this.</b> Each bar is one company's current position value, split by channel: teal via CRF, pink held directly by Coventures Oy, ivory already realised in cash. The small vertical notch is the capital invested, so the gap between notch and bar end is the unrealised gain. Values are the latest marks; see the honesty section for how each mark is set.",
+  vcov:"<b>Coventures Oy.</b> The company's own money through two channels: via CRF (€51 465 → €194 997, 3.79x) and directly outside CRF (€20 420 → €93 595, ~4.6x, driven by founder equity acquired at nominal cost; ValueLab's 20% sits here too, at €0 in and €0 marked). Realised so far: €20 000 from the SpringDNA business sale plus €471 as its share of the Rent Game repayment.<span class='src'>Source: CRF cap table 6/2026 + SpringDNA documents 3/2026.</span>",
+  map:"<b>How to read this.</b> Each bar is one company's current position value, split by channel: teal via CRF, pink held directly by Coventures Oy, ivory already realised in cash. The small vertical notch is the capital invested, so the gap between notch and bar end is the unrealised gain. ValueLab shows no bar on purpose: a 20% stake earned with work, carried at zero until there is a basis for a mark. Values are the latest marks; see the honesty section for how each mark is set.",
   tl:"<b>Owner targets.</b> Set per company by Coventures as an owner, June 2026. Two kinds: cash events (teal: loan repayments, dividends) that return money without an exit, and target exits (pink) with an indicative size class for the whole company at exit, not for our stake. Years are approximate horizons counted from 2026.",
   hon:"<b>What this section is for.</b> The headline multiple is honest only with its caveats attached. Shook alone carries the difference between 3.5x and 1.9x, and its 1.14% is undiluted, so the true figure is likely lower. This is the same discipline as in the cap table source document: present the headline always flagged as paper and Shook-driven.",
   str:"<b>Two layers of ownership.</b> Investors in CRF own series shares that track exactly one company each, so each investor's return depends on which series they joined. Coventures Oy sits in both layers: as a 30.2% shareholder of CRF and as a direct owner of stakes CRF does not hold. This page shows all of it; the three cards at the top give each lens its own multiple."
@@ -370,6 +395,10 @@ const INFO = {
     const y = T + i*(BH+GAP);
     const total = c.crf+c.direct+c.cash;
     g+=`<text x="${LBL-10}" y="${y+BH/2+4}" fill="#f4f1ea" font-size="12.5" font-weight="500" text-anchor="end" font-family="Poppins">${c.name}</text>`;
+    if(total<=0){
+      g+=`<text x="${x0}" y="${y+BH/2+4}" fill="#9aa0ae" font-size="11.5" font-style="italic" font-family="Poppins">${c.zero||''}</text>`;
+      return;
+    }
     let cx = x0;
     [[c.crf,'#00C6C1'],[c.direct,'#FF7BAC'],[c.cash,'#f4f1ea']].forEach(([v,col])=>{
       if(v<=0) return;
@@ -393,7 +422,7 @@ const INFO = {
   const W=760, H=240, L=30, R=30, AX=196;
   const y0=2026, y1=2033.6;
   const x = yr => L + (W-L-R)*(yr-y0)/(y1-y0);
-  const laneY = {1:150, 2:96, 3:44};
+  const laneY = {1:168, 2:124, 3:80, 4:36};
   let g='';
   g+=`<line x1="${L}" y1="${AX}" x2="${W-R}" y2="${AX}" stroke="#3a4050" stroke-width="1.5"/>`;
   for(let yr=2026; yr<=2033; yr++){
