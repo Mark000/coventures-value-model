@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Coventures · Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#242731; --card:#2b2f3b; --card2:#323748; --ink:#f4f1ea; --dim:#9aa0ae;
+    --pink:#FF7BAC; --teal:#00C6C1; --ivory:#f4f1ea; --line:#3a4050;
+  }
+  *{box-sizing:border-box; margin:0; padding:0}
+  body{background:var(--bg); color:var(--ink); font-family:'Poppins',sans-serif; font-weight:300; line-height:1.5; padding:0 0 80px}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 28px}
+  header{padding:42px 0 6px}
+  .brand{display:flex; align-items:center; gap:12px; margin-bottom:26px}
+  .dot{width:26px;height:26px;border-radius:50%;background:var(--pink)}
+  .wordmark{font-weight:600; font-size:20px; letter-spacing:.5px; line-height:1.05}
+  .eyebrow{color:var(--pink); font-size:11px; font-weight:600; letter-spacing:3px; text-transform:uppercase; margin-bottom:10px}
+  h1{font-size:34px; font-weight:700; line-height:1.2; max-width:900px}
+  .sub{color:var(--dim); max-width:820px; margin-top:10px; font-size:14.5px}
+  .honesty{margin-top:14px; font-size:12px; color:var(--dim); font-style:italic; border-left:3px solid var(--pink); padding-left:10px}
+
+  .views{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin:32px 0 0}
+  .view{background:var(--card); border:1.5px solid var(--line); border-radius:14px; padding:18px 18px 16px; position:relative}
+  .view .tag{position:absolute; top:14px; right:14px; font-size:10px; letter-spacing:2px; color:var(--teal); font-weight:600}
+  .view .t{font-weight:700; font-size:14px; letter-spacing:.5px; display:flex; align-items:center; gap:7px}
+  .view .x{font-size:38px; font-weight:800; color:var(--teal); margin:4px 0 2px}
+  .view.hero .x{color:var(--pink)}
+  .view .d{font-size:12px; color:var(--dim)}
+  .view .d b{color:var(--ink); font-weight:600}
+
+  .delta{display:flex; align-items:center; gap:22px; background:linear-gradient(90deg,#2b2f3b, #323748); border:1px solid var(--teal); border-radius:14px; padding:16px 24px; margin:14px 0 4px}
+  .delta .x{font-size:32px; font-weight:800; color:var(--teal); white-space:nowrap}
+  .delta .txt{font-size:13px; color:var(--ink)}
+  .delta .txt b{color:var(--teal)}
+
+  .card{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:20px; margin-top:14px}
+  .card h3{font-size:13px; letter-spacing:2px; text-transform:uppercase; color:var(--dim); font-weight:600; display:flex; align-items:center; gap:8px; margin-bottom:12px}
+  svg{width:100%; height:auto; display:block}
+  .legend{display:flex; flex-wrap:wrap; gap:18px; margin-top:10px; font-size:12px; color:var(--dim)}
+  .legend span{display:inline-flex; align-items:center; gap:6px}
+  .sw{width:11px; height:11px; border-radius:3px}
+
+  .positions{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:14px}
+  .pos{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:0; display:flex; flex-direction:column; overflow:hidden}
+  .pimg{height:132px; position:relative; background:var(--card2); flex:none}
+  .pimg img{width:100%; height:100%; object-fit:cover; display:block}
+  .pimg::after{content:''; position:absolute; inset:0; background:linear-gradient(180deg, rgba(36,39,49,0) 50%, rgba(43,47,59,.92) 100%)}
+  .pimg.closed{display:flex; align-items:center; justify-content:center; background:repeating-linear-gradient(135deg, var(--card2) 0 14px, var(--card) 14px 28px)}
+  .pimg.closed span{font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--dim); font-weight:600; position:relative; z-index:1}
+  .pbody{padding:16px 20px 20px; display:flex; flex-direction:column; flex:1}
+  .phead{display:flex; justify-content:space-between; align-items:flex-start; gap:14px}
+  .pname{font-size:19px; font-weight:700}
+  .pname a{color:inherit; text-decoration:none}
+  .pname a:hover{color:var(--teal)}
+  .pdesc{font-size:12px; margin-top:2px}
+  .pmeta{font-size:11.5px; color:var(--dim); margin-top:3px}
+  .pmult{text-align:right; flex:none}
+  .pmult .m{font-size:26px; font-weight:800; color:var(--pink); line-height:1}
+  .pmult .s{display:block; font-size:9.5px; letter-spacing:1.5px; text-transform:uppercase; color:var(--dim); margin-top:4px; font-weight:600}
+  .pmult.tealm .m{color:var(--teal)}
+  .pmult.dimm .m{color:var(--dim)}
+  .pgrid{display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin:16px 0 0}
+  .pgrid>div{background:var(--card2); border-radius:9px; padding:9px 11px}
+  .pl{display:block; font-size:9.5px; letter-spacing:1.2px; text-transform:uppercase; color:var(--dim); font-weight:600}
+  .pv{display:block; font-size:14.5px; font-weight:600; margin-top:2px}
+  .pv small{font-size:10.5px; color:var(--dim); font-weight:400}
+  .ptarget{margin-top:14px; border-left:3px solid var(--pink); padding:7px 0 7px 12px; font-size:12.5px}
+  .ptarget .tl{display:block; font-size:9.5px; letter-spacing:1.5px; text-transform:uppercase; color:var(--pink); font-weight:700; margin-bottom:2px}
+  .ptarget.tealt{border-left-color:var(--teal)}
+  .ptarget.tealt .tl{color:var(--teal)}
+  .pnote{margin-top:12px; font-size:11.5px; color:var(--dim)}
+
+  .cols{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:14px}
+  .cols .card{margin-top:0}
+  table{width:100%; border-collapse:collapse; font-size:13px}
+  th{font-size:10.5px; letter-spacing:1.4px; text-transform:uppercase; color:var(--dim); text-align:left; padding:7px 8px; border-bottom:1px solid var(--line); font-weight:600}
+  td{padding:8px; border-bottom:1px solid var(--line)}
+  td.num{text-align:right; font-weight:500}
+  tr:last-child td{border-bottom:none}
+  .hl td{color:var(--teal); font-weight:600}
+  .warnrow td{color:var(--pink)}
+  .tnote{margin-top:10px; font-size:11.5px; color:var(--dim)}
+  .tnote b{color:var(--ink); font-weight:600}
+
+  .info{display:inline-flex; width:15px; height:15px; border-radius:50%; border:1px solid var(--dim); color:var(--dim); font-size:10px; align-items:center; justify-content:center; cursor:pointer; font-style:normal; flex:none}
+  .info:hover{border-color:var(--teal); color:var(--teal)}
+  .pop{display:none; position:fixed; z-index:50; max-width:400px; background:#1c1e26; border:1px solid var(--teal); border-radius:10px; padding:14px 16px; font-size:12.5px; color:var(--ink); box-shadow:0 10px 40px rgba(0,0,0,.5)}
+  .pop b{color:var(--teal)}
+  .pop .src{display:block; margin-top:8px; color:var(--dim); font-size:11px; font-style:italic}
+
+  footer{margin-top:34px; font-size:11.5px; color:var(--dim); border-top:1px solid var(--line); padding-top:18px}
+  footer b{color:var(--ink)}
+  footer a{color:var(--teal); text-decoration:none}
+  footer a:hover{text-decoration:underline}
+  @media(max-width:900px){.views{grid-template-columns:1fr}.positions,.cols{grid-template-columns:1fr}.pgrid{grid-template-columns:repeat(2,1fr)}.delta{flex-direction:column;align-items:flex-start;gap:6px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="brand"><div class="dot"></div><div class="wordmark">co —<br>ventures</div></div>
+  <div class="eyebrow">Portfolio · investor deep dive</div>
+  <h1>€191k in, €673k on paper, and an owner target on every position.</h1>
+  <p class="sub">The Coventures and CRF book, position by position: what went in, what we own, the latest mark, the cash that has already come back, and what we are steering each company toward as owners. Figures as of <b style="color:var(--ink)">9 June 2026</b>; updated as rounds and realisations land.</p>
+  <p class="honesty">Multiples are paper values except where cash has actually returned, and the headline rides largely on one position (Shook). The sensitivity section shows the book without it. Owner targets are the direction we steer by, not commitments.</p>
+</header>
+
+<div class="views">
+  <div class="view hero">
+    <div class="tag">EVERYTHING</div>
+    <div class="t">Whole portfolio <i class="info" data-i="vall">i</i></div>
+    <div class="x">3.5x</div>
+    <div class="d"><b>€191 007 → €672 615</b> across six companies, held through CRF and directly. This is the universe this page covers.</div>
+  </div>
+  <div class="view">
+    <div class="tag">THE SPV</div>
+    <div class="t">CRF · Coventures Rocket Fuel <i class="info" data-i="vcrf">i</i></div>
+    <div class="x">3.39x</div>
+    <div class="d"><b>€170 587 → €579 020.</b> The co-investment vehicle. Coventures owns 30.2%; outside investors hold the rest, standing at 3.22x on their money.</div>
+  </div>
+  <div class="view">
+    <div class="tag">THE COMPANY</div>
+    <div class="t">Coventures Oy <i class="info" data-i="vcov">i</i></div>
+    <div class="x">4.01x</div>
+    <div class="d"><b>€71 885 → €288 592</b> through both channels, of which €20 471 has already been realised in cash (DPI 0.28x).</div>
+  </div>
+</div>
+
+<div class="delta">
+  <div class="x">€23 059</div>
+  <div class="txt">already back in cash. The book is not only paper: the <b>SpringDNA business sale returned €20 000</b> to Coventures and <b>Rent Game repaid €3 059</b> of its loan to CRF, both in March 2026. Every other number on this page is unrealised until an exit or a dividend lands.</div>
+</div>
+
+<div class="card">
+  <h3>The book at a glance · value by company <i class="info" data-i="map">i</i></h3>
+  <svg id="valuemap" viewBox="0 0 760 300"></svg>
+  <div class="legend">
+    <span><span class="sw" style="background:var(--teal)"></span>Held via CRF · paper</span>
+    <span><span class="sw" style="background:var(--pink)"></span>Coventures direct · paper</span>
+    <span><span class="sw" style="background:var(--ivory)"></span>Realised cash</span>
+    <span><span style="color:var(--ivory)">|</span>&nbsp;Invested capital</span>
+  </div>
+</div>
+
+<div class="positions">
+
+  <div class="pos">
+    <div class="pimg"><img src="assets/shook.png" alt="Shook"></div>
+    <div class="pbody">
+    <div class="phead">
+      <div>
+        <div class="pname"><a href="https://shook.digital" target="_blank" rel="noopener">Shook Digital</a></div>
+        <div class="pdesc">Creative performance partner for paid social and short-video · official TikTok partner · ~€200k MRR</div>
+        <div class="pmeta">CRF series A6 · convertible note 5/2022, converted to equity 7/2023</div>
+      </div>
+      <div class="pmult"><span class="m">~12.2x</span><span class="s">on paper</span></div>
+    </div>
+    <div class="pgrid">
+      <div><span class="pl">Invested</span><span class="pv">€30 000</span></div>
+      <div><span class="pl">Ownership</span><span class="pv">1.14% <small>undiluted</small></span></div>
+      <div><span class="pl">Company mark</span><span class="pv">€32M</span></div>
+      <div><span class="pl">Stake value</span><span class="pv">~€365 000</span></div>
+    </div>
+    <div class="ptarget"><span class="tl">Owner target</span>Likely path: exit within about 5 years (around 2031), targeting a €100M-class outcome.</div>
+    <p class="pnote">The biggest number in the book and its biggest uncertainty. The 1.14% is the latest undiluted figure and predates the move from ~€10M to €32M, so a dilutive round in between is likely. Read ~€365 000 as an upper bound, not a midpoint.</p>
+    </div>
+  </div>
+
+  <div class="pos">
+    <div class="pimg"><img src="assets/introist.png" alt="Introist product" style="object-position:top"></div>
+    <div class="pbody">
+    <div class="phead">
+      <div>
+        <div class="pname"><a href="https://introist.com" target="_blank" rel="noopener">Introist</a></div>
+        <div class="pdesc">Automation platform for HR operations: onboarding and employee journey workflows</div>
+        <div class="pmeta">CRF series A2 · equity · 2/2022</div>
+      </div>
+      <div class="pmult"><span class="m">~2.1x</span><span class="s">on paper</span></div>
+    </div>
+    <div class="pgrid">
+      <div><span class="pl">Invested</span><span class="pv">€57 895</span></div>
+      <div><span class="pl">Ownership</span><span class="pv">3.75% <small>fully diluted</small></span></div>
+      <div><span class="pl">Company mark</span><span class="pv">€3.3M <small>last round</small></span></div>
+      <div><span class="pl">Stake value</span><span class="pv">~€124 000</span></div>
+    </div>
+    <div class="ptarget"><span class="tl">Owner target</span>Likely path: exit within about 7 years (around 2033), in the €10M class.</div>
+    <p class="pnote">Marked at the previous financing round's valuation. The company carries debt, so a conservative reading sits closer to book value; we show the round mark and say so.</p>
+    </div>
+  </div>
+
+  <div class="pos">
+    <div class="pimg"><img src="assets/elementic.jpg" alt="Elementic carbon material"></div>
+    <div class="pbody">
+    <div class="phead">
+      <div>
+        <div class="pname"><a href="https://elementic.com" target="_blank" rel="noopener">Elementic</a></div>
+        <div class="pdesc">Harnessing carbon to transform modern architecture, construction and design · Red Dot Best of the Best 2026</div>
+        <div class="pmeta">CRF series C5 · equity · 5/2024 · plus direct founder equity · formerly Fifth Innovation</div>
+      </div>
+      <div class="pmult"><span class="m">~1.9x</span><span class="s">combined, on paper</span></div>
+    </div>
+    <div class="pgrid">
+      <div><span class="pl">Invested</span><span class="pv">€43 506</span></div>
+      <div><span class="pl">Ownership</span><span class="pv">1.05% <small>CRF</small> + 0.87% <small>direct</small></span></div>
+      <div><span class="pl">Company mark</span><span class="pv">€4.2M</span></div>
+      <div><span class="pl">Position value</span><span class="pv">€80 540</span></div>
+    </div>
+    <div class="ptarget"><span class="tl">Owner target</span>Exit within about 7 years (around 2033).</div>
+    <p class="pnote">Two channels: the CRF stake (€43 496 → €44 000, roughly at cost) and a direct 0.87% acquired at nominal cost as venture builder founder equity, now worth ~€36 540.</p>
+    </div>
+  </div>
+
+  <div class="pos">
+    <div class="pimg"><img src="assets/winterent.jpg" alt="Winterent Lapland"></div>
+    <div class="pbody">
+    <div class="phead">
+      <div>
+        <div class="pname"><a href="https://www.winterent.com" target="_blank" rel="noopener">Arcticles (Winterent)</a></div>
+        <div class="pdesc">Winter clothing rental and Lapland activities: Rovaniemi, Levi, Ruka, Saariselkä, Helsinki, Haparanda and Reykjavik</div>
+        <div class="pmeta">CRF series C12 + E2 · equity in two tranches · 12/2024 and 2/2026 · plus 1.1% direct</div>
+      </div>
+      <div class="pmult tealm"><span class="m">~1.7x</span><span class="s">combined · validated mark</span></div>
+    </div>
+    <div class="pgrid">
+      <div><span class="pl">Invested</span><span class="pv">€32 542</span></div>
+      <div><span class="pl">Ownership</span><span class="pv">3.96% <small>CRF</small> + 1.1% <small>direct</small></span></div>
+      <div><span class="pl">Company mark</span><span class="pv">~€1.10M</span></div>
+      <div><span class="pl">Position value</span><span class="pv">€55 466</span></div>
+    </div>
+    <div class="ptarget tealt"><span class="tl">Owner target</span>Primary path: a dividend-paying company. First distributions targeted in about 3 years (around 2029).</div>
+    <p class="pnote">The one mark in the book validated by an actual transaction: a real secondary trade at €16.80 per share in February 2026, in which CRF itself bought more (595 shares, €9 996).</p>
+    </div>
+  </div>
+
+  <div class="pos">
+    <div class="pimg"><img src="assets/springdna.jpg" alt="SpringDNA"></div>
+    <div class="pbody">
+    <div class="phead">
+      <div>
+        <div class="pname"><a href="https://springdna.com" target="_blank" rel="noopener">SpringDNA</a></div>
+        <div class="pdesc">eDNA-based biodiversity monitoring: modern scientific methods for high-quality environmental data</div>
+        <div class="pmeta">Coventures direct · spin-out 3/2026 · 25.00% founder equity + €20k capital loan</div>
+      </div>
+      <div class="pmult tealm"><span class="m">2.25x</span><span class="s">capital already back</span></div>
+    </div>
+    <div class="pgrid">
+      <div><span class="pl">Invested</span><span class="pv">€20 000</span></div>
+      <div><span class="pl">Ownership</span><span class="pv">25.00% <small>direct</small></span></div>
+      <div><span class="pl">Company mark</span><span class="pv">€100k <small>conservative</small></span></div>
+      <div><span class="pl">Position value</span><span class="pv">€45 000 <small>incl. €20k cash</small></span></div>
+    </div>
+    <div class="ptarget"><span class="tl">Owner target</span>Capital loan expected back within about 2 years (around 2028). Current aim: exit within about 5 years (around 2031), in the €10M class.</div>
+    <p class="pnote">Spun out of Coventures in March 2026. The €20 000 invested has effectively already returned through the business sale; what remains is 25% of a conservatively marked company plus a €20 000 capital loan, senior to equity and counted inside the €100k mark.</p>
+    </div>
+  </div>
+
+  <div class="pos">
+    <div class="pimg closed"><span>Position closed · 3/2026</span></div>
+    <div class="pbody">
+    <div class="phead">
+      <div>
+        <div class="pname">Rent Game</div>
+        <div class="pmeta">CRF series D4 · hybrid loan + shares · 4/2025 · position closed 3/2026</div>
+      </div>
+      <div class="pmult dimm"><span class="m">0.43x</span><span class="s">realised loss</span></div>
+    </div>
+    <div class="pgrid">
+      <div><span class="pl">Invested</span><span class="pv">€7 054</span></div>
+      <div><span class="pl">Recovered</span><span class="pv">€3 059 <small>cash</small></span></div>
+      <div><span class="pl">Written off</span><span class="pv">€3 441 <small>+ equity ~0</small></span></div>
+      <div><span class="pl">Status</span><span class="pv">Closed</span></div>
+    </div>
+    <div class="ptarget tealt"><span class="tl">Why it stays on this page</span>Losses are part of the book and we show them at face value: 47% of the capital loan was recovered, the rest written off.</div>
+    <p class="pnote">The portfolio's first fully realised outcome alongside the SpringDNA sale: one returned capital, one closed at a loss. Both are in every multiple on this page.</p>
+    </div>
+  </div>
+
+</div>
+
+<div class="card">
+  <h3>Where each position is headed · owner targets on a timeline <i class="info" data-i="tl">i</i></h3>
+  <svg id="timeline" viewBox="0 0 760 240"></svg>
+  <div class="legend">
+    <span><span class="sw" style="background:var(--teal)"></span>Cash event · loan repayment or dividends</span>
+    <span><span class="sw" style="background:var(--pink)"></span>Target exit</span>
+  </div>
+  <p class="tnote">These are the targets we steer by as owners, set per company in June 2026. They are directions, not commitments: timing and size depend on each company's execution and the market.</p>
+</div>
+
+<div class="cols">
+  <div class="card">
+    <h3>Honesty section · what moves these numbers <i class="info" data-i="hon">i</i></h3>
+    <table>
+      <tr><th>Scenario</th><th style="text-align:right">Invested</th><th style="text-align:right">Value</th><th style="text-align:right">TVPI</th></tr>
+      <tr class="hl"><td>Whole portfolio</td><td class="num">€191 007</td><td class="num">€672 615</td><td class="num">3.52x</td></tr>
+      <tr><td>CRF only</td><td class="num">€170 587</td><td class="num">€579 020</td><td class="num">3.39x</td></tr>
+      <tr class="warnrow"><td>Whole portfolio without Shook</td><td class="num">€161 007</td><td class="num">€307 815</td><td class="num">1.91x</td></tr>
+    </table>
+    <p class="tnote"><b>Why TVPI and not IRR:</b> most of the value is unrealised, and an IRR computed on paper marks would give a misleadingly precise number. TVPI = DPI (cash returned) + RVPI (paper value); today DPI is 0.28x for Coventures Oy and rising. <b>Marking policy:</b> latest priced round where one exists (Shook, Introist, Elementic), an actual trade where one happened (Arcticles), and a conservative internal mark where neither does (SpringDNA).</p>
+  </div>
+  <div class="card">
+    <h3>How the structure works <i class="info" data-i="str">i</i></h3>
+    <table>
+      <tr><th>Series</th><th>Company</th><th style="text-align:right">Invested</th></tr>
+      <tr><td>A2</td><td>Introist</td><td class="num">€57 895</td></tr>
+      <tr><td>A6</td><td>Shook Digital</td><td class="num">€30 000</td></tr>
+      <tr><td>C5</td><td>Elementic</td><td class="num">€43 496</td></tr>
+      <tr><td>C12 + E2</td><td>Arcticles (Winterent)</td><td class="num">€32 532</td></tr>
+      <tr><td>D4</td><td>Rent Game</td><td class="num">€6 654</td></tr>
+      <tr class="hl"><td colspan="2">CRF total (incl. admin series K)</td><td class="num">€170 587</td></tr>
+    </table>
+    <p class="tnote">CRF is a <b>tracking-stock investment company</b>: each share series corresponds to exactly one portfolio company, and investors own series shares roughly 1:1 to the euros they put in. One series' return follows only its own company. <b>Coventures Oy owns 30.2% of CRF</b> and additionally holds stakes outside CRF: SpringDNA 25.00%, Elementic 0.87% and Arcticles 1.1%, the latter two acquired at nominal cost by building the companies.</p>
+  </div>
+</div>
+
+<footer>
+  <p><b>Sources:</b> CRF cap table and shareholder register 6/2026 · Arcticles share purchase agreement 16 Feb 2026 · Rent Game loan repayment agreement 11 Mar 2026 · SpringDNA incorporation and business sale documents 26 Mar 2026. Status date 9 June 2026. Company imagery and descriptions from each company's own public website.</p>
+  <p style="margin-top:8px">See also the interactive <a href="https://mark000.github.io/coventures-value-model/">Coventures value model</a>: where this book goes next under assumptions you can set yourself.</p>
+  <p style="margin-top:8px; font-style:italic">Portfolio status for Coventures and CRF investors. Paper values are unrealised and can go down as well as up; owner targets are directional, not commitments. Not investment advice, not an offer, not a promise of returns. © Coventures Oy 2026 · coventures.io</p>
+</footer>
+</div>
+
+<div class="pop" id="pop"></div>
+
+<script>
+/* ================= data ================= */
+const COS = [
+  {name:'Shook Digital',          crf:364800, direct:0,     cash:0,     inv:30000, mult:'~12.2x'},
+  {name:'Introist',               crf:123750, direct:0,     cash:0,     inv:57895, mult:'~2.1x'},
+  {name:'Elementic',              crf:44000,  direct:36540, cash:0,     inv:43506, mult:'~1.9x'},
+  {name:'Arcticles (Winterent)',  crf:43411,  direct:12055, cash:0,     inv:32542, mult:'~1.7x'},
+  {name:'SpringDNA',              crf:0,      direct:25000, cash:20000, inv:20000, mult:'2.25x'},
+  {name:'Rent Game',              crf:0,      direct:0,     cash:3059,  inv:7054,  mult:'0.43x'}
+];
+
+const EVENTS = [
+  {y:2028,  kind:'cash', lane:1, anchor:'start', xoff:0,  co:'SpringDNA',             t:'capital loan repaid · ~€20k'},
+  {y:2029,  kind:'cash', lane:2, anchor:'start', xoff:0,  co:'Arcticles (Winterent)', t:'first dividends, recurring'},
+  {y:2031,  kind:'exit', lane:3, anchor:'end',   xoff:0,  co:'Shook Digital',         t:'target exit · €100M class'},
+  {y:2031,  kind:'exit', lane:2, anchor:'start', xoff:7,  co:'SpringDNA',             t:'target exit · €10M class'},
+  {y:2033,  kind:'exit', lane:3, anchor:'end',   xoff:0,  co:'Introist',              t:'target exit · €10M class'},
+  {y:2033,  kind:'exit', lane:1, anchor:'end',   xoff:-7, co:'Elementic',             t:'target exit'}
+];
+
+/* ================= info texts ================= */
+const INFO = {
+  vall:"<b>Whole portfolio.</b> Everything Coventures and CRF hold together, counted once: CRF's six series (€170 587 in) plus Coventures Oy's direct stakes outside CRF (€20 420 in: SpringDNA, Elementic 0.87%, Arcticles 1.1%, Rent Game equity). Coventures' share inside CRF is not added again.<span class='src'>Source: CRF cap table 6/2026.</span>",
+  vcrf:"<b>CRF, the SPV.</b> Coventures Rocket Fuel Oy pools capital from multiple investors and invests it series by series. Coventures Oy holds 51 465 of ~170 595 shares (30.2%); outside investors hold 69.8% (€119 122 in → €384 023 on paper, 3.22x). The difference to Coventures' 3.79x via CRF comes from which series each party participated in.<span class='src'>Source: CRF shareholder register 6/2026.</span>",
+  vcov:"<b>Coventures Oy.</b> The company's own money through two channels: via CRF (€51 465 → €194 997, 3.79x) and directly outside CRF (€20 420 → €93 595, ~4.6x, driven by founder equity acquired at nominal cost). Realised so far: €20 000 from the SpringDNA business sale plus €471 as its share of the Rent Game repayment.<span class='src'>Source: CRF cap table 6/2026 + SpringDNA documents 3/2026.</span>",
+  map:"<b>How to read this.</b> Each bar is one company's current position value, split by channel: teal via CRF, pink held directly by Coventures Oy, ivory already realised in cash. The small vertical notch is the capital invested, so the gap between notch and bar end is the unrealised gain. Values are the latest marks; see the honesty section for how each mark is set.",
+  tl:"<b>Owner targets.</b> Set per company by Coventures as an owner, June 2026. Two kinds: cash events (teal: loan repayments, dividends) that return money without an exit, and target exits (pink) with an indicative size class for the whole company at exit, not for our stake. Years are approximate horizons counted from 2026.",
+  hon:"<b>What this section is for.</b> The headline multiple is honest only with its caveats attached. Shook alone carries the difference between 3.5x and 1.9x, and its 1.14% is undiluted, so the true figure is likely lower. This is the same discipline as in the cap table source document: present the headline always flagged as paper and Shook-driven.",
+  str:"<b>Two layers of ownership.</b> Investors in CRF own series shares that track exactly one company each, so each investor's return depends on which series they joined. Coventures Oy sits in both layers: as a 30.2% shareholder of CRF and as a direct owner of stakes CRF does not hold. This page shows all of it; the three cards at the top give each lens its own multiple."
+};
+
+/* ================= value map ================= */
+(function(){
+  const svg = document.getElementById('valuemap');
+  const W=760, LBL=178, R=84, T=10, BH=24, GAP=18;
+  const max = Math.max(...COS.map(c=>c.crf+c.direct+c.cash));
+  const x0 = LBL, x1 = W-R;
+  const sx = v => x0 + (x1-x0)*v/max;
+  const fmt = v => '€'+Math.round(v/1000)+'k';
+  let g='';
+  COS.forEach((c,i)=>{
+    const y = T + i*(BH+GAP);
+    const total = c.crf+c.direct+c.cash;
+    g+=`<text x="${LBL-10}" y="${y+BH/2+4}" fill="#f4f1ea" font-size="12.5" font-weight="500" text-anchor="end" font-family="Poppins">${c.name}</text>`;
+    let cx = x0;
+    [[c.crf,'#00C6C1'],[c.direct,'#FF7BAC'],[c.cash,'#f4f1ea']].forEach(([v,col])=>{
+      if(v<=0) return;
+      const w = Math.max(sx(v)-x0, 2);
+      g+=`<rect x="${cx}" y="${y}" width="${w}" height="${BH}" rx="3" fill="${col}" fill-opacity="0.9"/>`;
+      cx += w;
+    });
+    const ix = sx(c.inv);
+    g+=`<line x1="${ix}" y1="${y-4}" x2="${ix}" y2="${y+BH+4}" stroke="#f4f1ea" stroke-width="1.5" opacity="0.85"/>`;
+    g+=`<text x="${cx+8}" y="${y+BH/2+4}" fill="#f4f1ea" font-size="12.5" font-weight="600" font-family="Poppins">${fmt(total)}</text>`;
+    g+=`<text x="${cx+8}" y="${y+BH/2+4}" dx="${(fmt(total).length)*7.6+6}" fill="#9aa0ae" font-size="11" font-family="Poppins">${c.mult}</text>`;
+  });
+  const yb = T + COS.length*(BH+GAP) + 2;
+  g+=`<text x="${LBL}" y="${yb+8}" fill="#9aa0ae" font-size="11.5" font-family="Poppins">Total: €191 007 invested → €672 615 on paper and realised · 3.5x</text>`;
+  svg.innerHTML = g;
+})();
+
+/* ================= timeline ================= */
+(function(){
+  const svg = document.getElementById('timeline');
+  const W=760, H=240, L=30, R=30, AX=196;
+  const y0=2026, y1=2033.6;
+  const x = yr => L + (W-L-R)*(yr-y0)/(y1-y0);
+  const laneY = {1:150, 2:96, 3:44};
+  let g='';
+  g+=`<line x1="${L}" y1="${AX}" x2="${W-R}" y2="${AX}" stroke="#3a4050" stroke-width="1.5"/>`;
+  for(let yr=2026; yr<=2033; yr++){
+    g+=`<line x1="${x(yr)}" y1="${AX-4}" x2="${x(yr)}" y2="${AX+4}" stroke="#3a4050" stroke-width="1.5"/>`;
+    g+=`<text x="${x(yr)}" y="${AX+22}" fill="#9aa0ae" font-size="12" text-anchor="middle" font-family="Poppins">${yr}</text>`;
+  }
+  g+=`<line x1="${x(2026)}" y1="${AX}" x2="${x(2026)}" y2="30" stroke="#f4f1ea" stroke-width="1" stroke-dasharray="2 4" opacity="0.5"/>`;
+  g+=`<text x="${x(2026)+6}" y="30" fill="#f4f1ea" font-size="10" font-family="Poppins" opacity="0.8">TODAY</text>`;
+  EVENTS.forEach(e=>{
+    const ex = x(e.y)+(e.xoff||0), ey = laneY[e.lane];
+    const col = e.kind==='cash' ? '#00C6C1' : '#FF7BAC';
+    const anchor = e.anchor;
+    const tx = anchor==='end' ? ex-10 : ex+10;
+    g+=`<line x1="${ex}" y1="${AX}" x2="${ex}" y2="${ey+12}" stroke="${col}" stroke-width="1" stroke-dasharray="2 3" opacity="0.6"/>`;
+    g+=`<circle cx="${ex}" cy="${AX}" r="4.5" fill="${col}"/>`;
+    g+=`<text x="${tx}" y="${ey}" fill="#f4f1ea" font-size="12.5" font-weight="600" text-anchor="${anchor}" font-family="Poppins">${e.co}</text>`;
+    g+=`<text x="${tx}" y="${ey+15}" fill="#9aa0ae" font-size="11" text-anchor="${anchor}" font-family="Poppins">${e.t}</text>`;
+  });
+  svg.innerHTML = g;
+})();
+
+/* ================= popovers ================= */
+const pop=document.getElementById('pop');
+document.querySelectorAll('.info').forEach(el=>{
+  el.addEventListener('click',ev=>{
+    ev.stopPropagation();
+    pop.innerHTML = INFO[el.dataset.i]||'';
+    pop.style.display='block';
+    const rc=el.getBoundingClientRect();
+    pop.style.left=Math.min(rc.left, window.innerWidth-420)+'px';
+    pop.style.top=(rc.bottom+8)+'px';
+  });
+});
+document.addEventListener('click',()=>pop.style.display='none');
+</script>
+</body>
+</html>
