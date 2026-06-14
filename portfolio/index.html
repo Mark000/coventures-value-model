@@ -92,6 +92,29 @@
   .pop b{color:var(--teal)}
   .pop .src{display:block; margin-top:8px; color:var(--dim); font-size:11px; font-style:italic}
 
+  details.sources{margin-top:14px; background:var(--card); border:1px solid var(--line); border-radius:14px}
+  details.sources>summary{padding:20px; cursor:pointer; list-style:none; display:flex; align-items:center; gap:10px}
+  details.sources>summary::-webkit-details-marker{display:none}
+  details.sources>summary .st{font-size:13px; letter-spacing:2px; text-transform:uppercase; color:var(--dim); font-weight:600}
+  details.sources>summary .sd{font-size:12px; color:var(--dim); font-weight:300}
+  details.sources>summary .chev{margin-left:auto; color:var(--dim); transition:.2s; font-size:13px}
+  details.sources[open]>summary .chev{transform:rotate(90deg)}
+  .srcbody{padding:0 20px 22px}
+  .srclegend{display:flex; flex-wrap:wrap; gap:8px 16px; font-size:11.5px; color:var(--dim); margin:0 0 6px; align-items:center}
+  .srclegend span{display:inline-flex; align-items:center; gap:6px}
+  .srctag{display:inline-block; font-size:9px; font-weight:700; letter-spacing:1px; border-radius:5px; padding:2px 6px; vertical-align:1px}
+  .srctag.doc{background:#10403f; color:var(--teal)}
+  .srctag.derived{background:#33384a; color:#cfd4e0}
+  .srctag.mark{background:#4a3f2a; color:#e6c382}
+  .srctag.target{background:#5a3a45; color:var(--pink)}
+  .srcgrp{margin-top:24px}
+  .srcgrp h4{font-size:13px; font-weight:600; color:var(--ink); margin:0 0 6px; display:flex; align-items:baseline; gap:9px; flex-wrap:wrap}
+  .srcgrp h4 .ser{font-size:10px; letter-spacing:1px; color:var(--teal); font-weight:600}
+  table.srctable td{padding:7px 8px; vertical-align:top; font-size:12.5px}
+  table.srctable td.dp{color:var(--dim); width:24%}
+  table.srctable td.vl{font-weight:600; width:24%}
+  table.srctable td.sr{color:var(--dim); font-size:11.5px}
+  table.srctable td.sr b{color:var(--ink); font-weight:500}
   footer{margin-top:34px; font-size:11.5px; color:var(--dim); border-top:1px solid var(--line); padding-top:18px}
   footer b{color:var(--ink)}
   footer a{color:var(--teal); text-decoration:none}
@@ -347,8 +370,117 @@
   </div>
 </div>
 
+<details class="sources">
+  <summary><span class="st">Every number, and where it comes from</span><span class="sd">full data provenance, position by position</span><span class="chev">▶</span></summary>
+  <div class="srcbody">
+    <div class="srclegend">
+      <span><span class="srctag doc">DOC</span> signed agreement, cap table or shareholder register</span>
+      <span><span class="srctag derived">DERIVED</span> calculated from the figures here</span>
+      <span><span class="srctag mark">MARK</span> conservative internal estimate, no external price yet</span>
+      <span><span class="srctag target">TARGET</span> Coventures' owner target, not a document</span>
+    </div>
+
+    <div class="srcgrp">
+      <h4>Shook Digital <span class="ser">CRF series A6</span></h4>
+      <table class="srctable">
+        <tr><td class="dp">Capital invested</td><td class="vl">€30 000</td><td class="sr"><span class="srctag doc">DOC</span> CRF cap table, series A6</td></tr>
+        <tr><td class="dp">Instrument</td><td class="vl">Convertible note</td><td class="sr"><span class="srctag doc">DOC</span> issued 18 May 2022, converted to equity 7 Jul 2023 (CRF cap table / Holdings Overview)</td></tr>
+        <tr><td class="dp">Ownership</td><td class="vl">1.14% undiluted</td><td class="sr"><span class="srctag doc">DOC</span> CRF cap table; latest <b>undiluted</b> figure, predates the €10M→€32M move, so likely an upper bound</td></tr>
+        <tr><td class="dp">Company valuation</td><td class="vl">€32M</td><td class="sr"><span class="srctag doc">DOC</span> Coventures &amp; CRF Holdings Overview / Marko 6/2026</td></tr>
+        <tr><td class="dp">Traction</td><td class="vl">~€200k MRR</td><td class="sr"><span class="srctag doc">DOC</span> Holdings Overview / Marko 6/2026</td></tr>
+        <tr><td class="dp">Stake value</td><td class="vl">~€365 000</td><td class="sr"><span class="srctag derived">DERIVED</span> 1.14% × €32M; upper bound</td></tr>
+        <tr><td class="dp">Owner target</td><td class="vl">Exit ≈2031, €100M class</td><td class="sr"><span class="srctag target">TARGET</span> Marko, June 2026</td></tr>
+      </table>
+    </div>
+
+    <div class="srcgrp">
+      <h4>Introist <span class="ser">CRF series A2</span></h4>
+      <table class="srctable">
+        <tr><td class="dp">Capital invested</td><td class="vl">€57 895</td><td class="sr"><span class="srctag doc">DOC</span> CRF cap table, series A2 (equity, 10 Feb 2022)</td></tr>
+        <tr><td class="dp">Ownership</td><td class="vl">3.75% fully diluted</td><td class="sr"><span class="srctag doc">DOC</span> CRF cap table</td></tr>
+        <tr><td class="dp">Company valuation</td><td class="vl">€3.3M</td><td class="sr"><span class="srctag doc">DOC</span> previous financing round (Holdings Overview / Marko); company is debt-laden, so a conservative reading is lower</td></tr>
+        <tr><td class="dp">Stake value</td><td class="vl">~€124 000</td><td class="sr"><span class="srctag derived">DERIVED</span> 3.75% × €3.3M</td></tr>
+        <tr><td class="dp">Owner target</td><td class="vl">Exit ≈2033, €10M class</td><td class="sr"><span class="srctag target">TARGET</span> Marko, June 2026</td></tr>
+      </table>
+    </div>
+
+    <div class="srcgrp">
+      <h4>Elementic <span class="ser">CRF series C5 + direct · formerly Fifth Innovation</span></h4>
+      <table class="srctable">
+        <tr><td class="dp">CRF capital invested</td><td class="vl">€43 496</td><td class="sr"><span class="srctag doc">DOC</span> CRF cap table, series C5 (6 463 shares @ €6.73, 15 May 2024)</td></tr>
+        <tr><td class="dp">CRF ownership</td><td class="vl">~1.05%</td><td class="sr"><span class="srctag doc">DOC</span> CRF cap table</td></tr>
+        <tr><td class="dp">CRF stake value</td><td class="vl">~€44 000</td><td class="sr"><span class="srctag mark">MARK</span> Holdings Overview, ≈ at cost</td></tr>
+        <tr><td class="dp">Direct ownership</td><td class="vl">0.87%</td><td class="sr"><span class="srctag doc">DOC</span> "For banks" sheet + Marko; cost ~€10 (nominal founder equity)</td></tr>
+        <tr><td class="dp">Direct value</td><td class="vl">€36 540</td><td class="sr"><span class="srctag doc">DOC</span> "For banks" sheet</td></tr>
+        <tr><td class="dp">Company valuation</td><td class="vl">€4.2M</td><td class="sr"><span class="srctag doc">DOC</span> Holdings Overview</td></tr>
+        <tr><td class="dp">Owner target</td><td class="vl">Exit ≈2033</td><td class="sr"><span class="srctag target">TARGET</span> Marko, June 2026</td></tr>
+      </table>
+    </div>
+
+    <div class="srcgrp">
+      <h4>Arcticles (Winterent) <span class="ser">CRF series C12 + E2 + direct</span></h4>
+      <table class="srctable">
+        <tr><td class="dp">C12 tranche</td><td class="vl">€22 536</td><td class="sr"><span class="srctag doc">DOC</span> CRF cap table (1 989 shares @ €11.33, 31 Dec 2024)</td></tr>
+        <tr><td class="dp">E2 tranche</td><td class="vl">€9 996</td><td class="sr"><span class="srctag doc">DOC</span> Arcticles share purchase agreement, 16 Feb 2026 (595 shares @ €16.80)</td></tr>
+        <tr><td class="dp">CRF ownership</td><td class="vl">3.96% · 2 584 shares</td><td class="sr"><span class="srctag doc">DOC</span> CRF cap table + 16 Feb 2026 agreement</td></tr>
+        <tr><td class="dp">CRF stake value</td><td class="vl">€43 411</td><td class="sr"><span class="srctag derived">DERIVED</span> at €16.80/share</td></tr>
+        <tr><td class="dp">Direct ownership</td><td class="vl">1.1%</td><td class="sr"><span class="srctag doc">DOC</span> "For banks" sheet + Marko; cost ~€10 (nominal)</td></tr>
+        <tr><td class="dp">Direct value</td><td class="vl">€12 055</td><td class="sr"><span class="srctag doc">DOC</span> "For banks" sheet</td></tr>
+        <tr><td class="dp">Company valuation</td><td class="vl">~€1.10M</td><td class="sr"><span class="srctag derived">DERIVED</span> €16.80 × 65 231 shares, validated by the actual 16 Feb 2026 trade</td></tr>
+        <tr><td class="dp">Owner target</td><td class="vl">Dividends ≈2029</td><td class="sr"><span class="srctag target">TARGET</span> Marko, June 2026</td></tr>
+      </table>
+    </div>
+
+    <div class="srcgrp">
+      <h4>SpringDNA <span class="ser">Coventures direct · spin-out</span></h4>
+      <table class="srctable">
+        <tr><td class="dp">Ownership</td><td class="vl">25.00% · 25 000 of 100 000 shares</td><td class="sr"><span class="srctag doc">DOC</span> SpringDNA incorporation agreement, 26 Mar 2026</td></tr>
+        <tr><td class="dp">Capital invested</td><td class="vl">€20 000</td><td class="sr"><span class="srctag doc">DOC</span> Marko (not stated in incorporation docs)</td></tr>
+        <tr><td class="dp">Realised in cash</td><td class="vl">€20 000</td><td class="sr"><span class="srctag doc">DOC</span> SpringDNA business sale documents, 26 Mar 2026 (capital effectively already returned)</td></tr>
+        <tr><td class="dp">Equity residual</td><td class="vl">€25 000</td><td class="sr"><span class="srctag mark">MARK</span> 25% × €100k conservative internal company mark</td></tr>
+        <tr><td class="dp">Capital loan</td><td class="vl">€20 000</td><td class="sr"><span class="srctag doc">DOC</span> SpringDNA financing terms (OYL 12, Euribor+3%), senior to equity, counted inside the €100k mark</td></tr>
+        <tr><td class="dp">Owner target</td><td class="vl">Loan back ≈2028; exit ≈2031, €10M class</td><td class="sr"><span class="srctag target">TARGET</span> Marko, June 2026</td></tr>
+      </table>
+    </div>
+
+    <div class="srcgrp">
+      <h4>Rent Game <span class="ser">CRF series D4 · position closed</span></h4>
+      <table class="srctable">
+        <tr><td class="dp">Capital invested</td><td class="vl">€6 654</td><td class="sr"><span class="srctag doc">DOC</span> CRF cap table (€6 500 hybrid loan + 15 293 shares @ €0.01, 28 Apr 2025)</td></tr>
+        <tr><td class="dp">Recovered in cash</td><td class="vl">€3 058.82 · 47%</td><td class="sr"><span class="srctag doc">DOC</span> Rent Game loan repayment agreement, 11 Mar 2026</td></tr>
+        <tr><td class="dp">Written off</td><td class="vl">€3 441.18 · equity ~0</td><td class="sr"><span class="srctag doc">DOC</span> same agreement; position closed 3/2026</td></tr>
+      </table>
+    </div>
+
+    <div class="srcgrp">
+      <h4>ValueLab <span class="ser">Coventures direct · service business, outside the totals</span></h4>
+      <table class="srctable">
+        <tr><td class="dp">Ownership</td><td class="vl">20.00%</td><td class="sr"><span class="srctag doc">DOC</span> Marko, 12 Jun 2026</td></tr>
+        <tr><td class="dp">Cost</td><td class="vl">€0</td><td class="sr"><span class="srctag doc">DOC</span> earned with free work + a business transfer (Marko)</td></tr>
+        <tr><td class="dp">Company mark</td><td class="vl">None · carried at €0</td><td class="sr"><span class="srctag mark">MARK</span> no valuation basis yet; excluded from venture multiples by policy</td></tr>
+        <tr><td class="dp">Owner target</td><td class="vl">Dividends ≈2031</td><td class="sr"><span class="srctag target">TARGET</span> Marko, June 2026</td></tr>
+      </table>
+    </div>
+
+    <div class="srcgrp">
+      <h4>Aggregates &amp; cross-cutting</h4>
+      <table class="srctable">
+        <tr><td class="dp">Whole-portfolio TVPI</td><td class="vl">3.52x · €191 007 → €672 615</td><td class="sr"><span class="srctag derived">DERIVED</span> sum of the six venture positions above</td></tr>
+        <tr><td class="dp">CRF TVPI</td><td class="vl">3.39x · €170 587 → €579 020</td><td class="sr"><span class="srctag derived">DERIVED</span> CRF series only</td></tr>
+        <tr><td class="dp">Coventures Oy TVPI</td><td class="vl">4.01x · €71 885 → €288 592</td><td class="sr"><span class="srctag derived">DERIVED</span> Coventures' share via CRF + its direct stakes</td></tr>
+        <tr><td class="dp">Without Shook</td><td class="vl">1.91x · €161 007 → €307 815</td><td class="sr"><span class="srctag derived">DERIVED</span> whole portfolio less the Shook position</td></tr>
+        <tr><td class="dp">Realised cash to date</td><td class="vl">€23 059</td><td class="sr"><span class="srctag derived">DERIVED</span> €20 000 SpringDNA sale + €3 059 Rent Game repayment</td></tr>
+        <tr><td class="dp">Coventures' share of CRF</td><td class="vl">30.2% · 51 465 of ~170 595 shares</td><td class="sr"><span class="srctag doc">DOC</span> CRF shareholder register 6/2026</td></tr>
+        <tr><td class="dp">Imagery &amp; one-line descriptions</td><td class="vl">Per company</td><td class="sr"><span class="srctag doc">DOC</span> each company's own public website</td></tr>
+      </table>
+    </div>
+
+    <p class="tnote" style="margin-top:20px">Underlying files: CRF cap table Excel (shareholder register + investment + "For banks" sheets) · Coventures &amp; CRF Holdings Overview · Arcticles share purchase agreement 16 Feb 2026 · Rent Game (Summerent) loan repayment agreement 11 Mar 2026 · SpringDNA incorporation &amp; business sale documents 26 Mar 2026 · Marko's owner targets June 2026. Status date 9 June 2026.</p>
+  </div>
+</details>
+
 <footer>
-  <p><b>Sources:</b> CRF cap table and shareholder register 6/2026 · Arcticles share purchase agreement 16 Feb 2026 · Rent Game loan repayment agreement 11 Mar 2026 · SpringDNA incorporation and business sale documents 26 Mar 2026. Status date 9 June 2026. Company imagery and descriptions from each company's own public website.</p>
+  <p><b>Sources:</b> CRF cap table and shareholder register 6/2026 · Arcticles share purchase agreement 16 Feb 2026 · Rent Game loan repayment agreement 11 Mar 2026 · SpringDNA incorporation and business sale documents 26 Mar 2026. Status date 9 June 2026. Company imagery and descriptions from each company's own public website. Full per-number provenance in the panel above.</p>
   <p style="margin-top:8px">See also the interactive <a href="https://mark000.github.io/coventures-value-model/">Coventures value model</a>: where this book goes next under assumptions you can set yourself.</p>
   <p style="margin-top:8px; font-style:italic">Portfolio status for Coventures and CRF investors. Paper values are unrealised and can go down as well as up; owner targets are directional, not commitments. Not investment advice, not an offer, not a promise of returns. © Coventures Oy 2026 · coventures.io</p>
 </footer>
